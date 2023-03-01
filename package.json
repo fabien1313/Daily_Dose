@@ -1,0 +1,20 @@
+{
+  "name": "daily_dose",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fabien1313/Daily_Dose.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fabien1313/Daily_Dose/issues"
+  },
+  "homepage": "https://github.com/fabien1313/Daily_Dose#readme"
+}
