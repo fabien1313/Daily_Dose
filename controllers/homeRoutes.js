@@ -23,6 +23,14 @@ router.get('/login', (req, res) => {// Use the get() method to create a GET rout
 	res.render('login');// Use the render() method to render the login handlebar
 });
 
+router.get('/signup', (req, res) => {// Use the get() method to create a GET route for the login page (localhost:3001/login)
+	// if (req.session.loggedIn) {// If the user is logged in, redirect them to the homepage
+	// 	res.redirect('/');// Use the redirect() method to redirect the user to the homepage
+	// 	return;
+	// }
+	res.render('signup');// Use the render() method to render the login handlebar
+});
+
 
 
 
