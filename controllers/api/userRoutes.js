@@ -7,7 +7,7 @@ const { user } = require('../../models');// import the User model from the model
 // Create a new user
 router.post('/', async (req, res) => {// This is the POST route for localhost:3001/api/users
 	try {
-		const dbUserData = await User.create({// This creates a new user in the database
+		const dbUserData = await user.create({// This creates a new user in the database
 			username: req.body.username,// This gets the username from the request body
 			email: req.body.email,// This gets the email from the request body
 			password: req.body.password,// This gets the password from the request body
@@ -25,7 +25,7 @@ router.post('/', async (req, res) => {// This is the POST route for localhost:30
 // Login
 router.post('/login', async (req, res) => {// This is the POST route for localhost:3001/api/users/login
 	try {
-		const dbUserData = await User.findOne({// This looks for a user from the database
+		const dbUserData = await user.findOne({// This looks for a user from the database
 			where: {
 				email: req.body.email,// This gets the email from the request body
 			},

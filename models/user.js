@@ -35,6 +35,13 @@ user.init(// initialize the User model by calling the init() method on the User 
                 len: [6],
             },
         },
+        postId: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'post',
+                key: 'id',
+            },
+        },
     },
     {
         hooks: {// define the hooks object to run the beforeCreate() method before a new user is created
