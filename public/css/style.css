@@ -1,0 +1,117 @@
+/* Global */
+* {
+    padding:0;
+    margin:0;
+}
+/* Global */
+
+/* navigation */
+header {
+    /* display: flex; */
+    flex-wrap: wrap;
+    background-color: black;
+    height: 115px;
+}
+
+li {
+    color: white;
+    display: inline-block;
+    margin-left: 25px;
+    font-size: 20px;
+}
+
+#web-title-div {
+    margin-left: 25px;
+    margin-top: 20px;
+    border: 2px solid white;
+    width: 210px;
+    padding:5px;
+    border-radius: 12px;
+    box-shadow: 10px 5px 5px gray;
+    
+}
+
+#web-title {
+    color: white;
+}
+
+
+/* navigation */
+
+
+/* main */
+main {
+    margin: 30px;
+}
+
+.post {
+    border: 2px solid black;
+    margin-bottom: 20px;
+    
+}
+
+h2 {
+    color: white;
+    padding: 10px;
+}
+
+.post-title {
+    background-color: black;
+}
+
+.content {
+    padding:10px;
+}
+/* main */
+
+/* login */
+#login-container {
+    text-align: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 600px;
+    height: auto;
+    position: relative;
+    top:270px;
+    border: 3px solid black;
+    box-shadow: 2px 2px 10px 5px gray; 
+}
+
+#login-btn {
+    display: block;
+    margin: 0 auto;
+    border-radius: 12px;
+    padding:10px;
+    background-color: black;
+    color: white;
+}
+
+#login-title-container {
+    background-color: black; 
+}
+
+#login-title {
+    color:white;
+    font-size: 30px;
+    padding: 15px;
+}
+
+#email, #password {
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 300px;
+    height: 14px;
+    font-size: 20px;
+    padding: 5px;
+}
+
+#login-div {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+
+/* login */
