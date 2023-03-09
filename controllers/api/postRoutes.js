@@ -1,15 +1,13 @@
 const router = require('express').Router();// import the Router() method from the express package
 const { post } = require('../../models');// import the Post model from the models folder
+const withAuth = require('../../utils/auth');// import the withAuth() function from the utils folder
 
-router.get('/', async (req, res) => {// This is the GET route for localhost:3001/api/food
+router.get('/', withAuth, async (req, res) => {// This is the GET route for localhost:3001/api/food
 	try {
 		const dbPostData = await post.findAll({// This gets all the food from the database
-			// include: [
-			// 	{
-			// 		model: post,// This includes the category model
-			// 		attributes: ['title', 'content'],// This includes the title and content attribute from the post model
-			// 	},
-			// ],
+			where: {
+				user_id: req.session.user_id
+			},
 		});
 		const posts = dbPostData.map((post) => post.get({ plain: true }));// This maps over the food data and converts it to a plain object
 		req.session.save(() => {// This saves the session
@@ -25,15 +23,15 @@ router.get('/', async (req, res) => {// This is the GET route for localhost:3001
 			});
 		});
 	} catch (err) {
-		console.log(err);
+		res.redirect('login');
 		res.status(500).json(err);
 	}
 });
 
 
 
-// GET one food
-router.get('/:id', async (req, res) => {// This is the GET route for localhost:3001/api/food/:id
+// GET 
+router.get('/:id', async (req, res) => {// This is the GET route for localhost:3001/api/posts/:id
 	try {
 		const dbPostData = await post.findByPk(req.params.id, {// This gets the food with the id that matches the id in the URL
 			// include: [

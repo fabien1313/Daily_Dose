@@ -17,6 +17,10 @@ const postData = [
         title: 'My fourth post',
         content: 'This is my fourth post',
     },
+    {
+        title: 'My fifth post',
+        content: 'This is my fifth post',
+    },
 ];
 
 async function seedPosts() {// create a function to seed the foods table
