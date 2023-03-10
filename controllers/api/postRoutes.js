@@ -2,7 +2,7 @@ const router = require('express').Router();// import the Router() method from th
 const { post } = require('../../models');// import the Post model from the models folder
 const withAuth = require('../../utils/auth');// import the withAuth() function from the utils folder
 
-router.get('/', withAuth, async (req, res) => { // This is the GET route for localhost:3001/api/
+router.post('/', withAuth, async (req, res) => { // This is the GET route for localhost:3001/api/
 	const body = req.body; // This gets the body of the request
 
 	try {

@@ -11,7 +11,13 @@ const PORT = process.env.PORT || 3001;// Set the port to be used by the server (
 const hbs = exphbs.create({ helpers });// Create a new instance of the express-handlebars object and pass in the helpers object
 const sess = {
 	// Create a new session object to be used by express-session
-	secret: 'Super secret secret', // The secret is used to sign the session ID cookie. This can be anything you want
+	secret: 'Super secret secret',
+	cookie: {
+		maxAge: 30000,
+		httpOnly: true,
+		secure: false,
+		sameSite: 'strict',
+	}, // The secret is used to sign the session ID cookie. This can be anything you want
 	resave: false, // The resave property forces the session to be saved back to the session store, even if the session was never modified during the request
 	saveUninitialized: true, // The saveUninitialized property forces a session that is "uninitialized" to be saved to the store. A session is uninitialized when it is new but not modified
 	store: new SequelizeStore({

@@ -19,6 +19,7 @@ router.get('/', async (req, res) => {
 });
 
 
+
 // GET LOGIN PAGE
 router.get('/login', (req, res) => {// Use the get() method to create a GET route for the login page (localhost:3001/
 	if (req.session.loggedIn) { // if user logs in successfully, redirect to homepage

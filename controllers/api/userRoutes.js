@@ -15,7 +15,7 @@ router.post('/', async (req, res) => {// This is the POST route for localhost:30
 			req.session.loggedIn = true;// This sets the loggedIn property to true
 			req.session.username = dbUserData.username;// This sets the username property to the username from the database
 			req.session.userNameId= dbUserData.id;// This sets the userNameId property to the id from the database
-			res.status(200).json(dbUserData);
+			res.json(dbUserData);
 		});
 	} catch (err) {
 		console.log(err);
