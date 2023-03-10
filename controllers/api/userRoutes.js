@@ -5,7 +5,7 @@ const { user } = require('../../models');// import the User model from the model
 
 
 // Create a new user
-router.post('/signup', async (req, res) => {// This is the POST route for localhost:3001/api/users
+router.post('/', async (req, res) => {// This is the POST route for localhost:3001/api/users
 	try {
 		const dbUserData = await user.create({// This creates a new user in the database
 			username: req.body.username,// This gets the username from the request body
@@ -35,7 +35,7 @@ router.post('/login', async (req, res) => {// This is the POST route for localho
 			res.status(400).json({ message: 'Incorrect username or password. Please try again!' });
 			return;
 		}
-		const validPassword = await dbUserData.checkPassword(req.body.password);// This checks the password from the request body against the password in the database
+		const validPassword = dbUserData.checkPassword(req.body.password);// This checks the password from the request body against the password in the database
 		if (!validPassword) {// If the password is incorrect
 			res.status(400).json({ message: 'Incorrect username or password. Please try again!' });
 			return;

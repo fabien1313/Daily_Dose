@@ -3,22 +3,19 @@ const { post, comment, user } = require('../models/');
 
 
 // GET HOMEPAGE
-router.get ('/', async (req, res) => {
-    try {
-        const dbPostData = await post.findAll({ //Find all posts
+router.get('/', async (req, res) => {
+	try {
+		const dbPostData = await post.findAll({ //Find all posts
 			include: [user], // Posts found are from the user table
 		});
 
-        const posts = dbPostData.map((post) => post.get({ plain: true }));
-		res.render('myposts', {
-			layout: 'main',
-			posts,
-		});  // Render the myposts handlebar and pass in the posts object on the homepage.
+		const posts = dbPostData.map((post) => post.get({ plain: true }));
+		res.render('myposts', { posts });  // Render the myposts handlebar and pass in the posts object on the homepage.
 
-    } catch (e) {
-        console.log(e); // If there is an error, log it to the console
-        res.status(500).json(e); // If there is an error, return a status code of 500 and the error message in JSON
-    }
+	} catch (e) {
+		console.log(e); // If there is an error, log it to the console
+		res.status(500).json(e); // If there is an error, return a status code of 500 and the error message in JSON
+	}
 });
 
 
@@ -46,7 +43,7 @@ router.get('/signup', (req, res) => {// Use the get() method to create a GET rou
 router.get('/post/:id', async (req, res) => {
 	try {
 		const dbPostData = await post.findByPk(req.params.id, { //set up params for id value
-			include: [user,{model: comment, include: [user],},], // Posts found are from the user table
+			include: [user, { model: comment, include: [user], },], // Posts found are from the user table
 		});
 
 		if (dbPostData) { // If the post exists, render the singlepost handlebar and pass in the post object
@@ -56,7 +53,7 @@ router.get('/post/:id', async (req, res) => {
 		} else {
 			res.status(404).end(); // If the post doesn't exist, return a 404 status code
 		}
-	} catch (e) { 
+	} catch (e) {
 		console.log(e); // If there is an error, log it to the console
 		res.status(500).json(e); // If there is an error, return a status code of 500 and the error message in JSON
 	}
