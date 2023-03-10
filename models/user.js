@@ -3,9 +3,9 @@ const bcrypt = require('bcrypt');// import the bcrypt package
 const sequelize = require('../config/connection');// import the sequelize connection from the config folder
 
 class user extends Model {// create the User model by extending the Model class from sequelize package
-	checkPassword(loginPw) {// checkPassword from bcrypt is used to compare the password entered by the user at login with the hashed password stored in the database
-		return bcrypt.compareSync(loginPw, this.password);// compareSync() returns true if the passwords match, otherwise it returns false
-	}
+    checkPassword(loginPw) {// checkPassword from bcrypt is used to compare the password entered by the user at login with the hashed password stored in the database
+        return bcrypt.compareSync(loginPw, this.password);// compareSync() returns true if the passwords match, otherwise it returns false
+    }
 }
 
 user.init(// initialize the User model by calling the init() method on the User class
@@ -20,14 +20,6 @@ user.init(// initialize the User model by calling the init() method on the User 
             type: DataTypes.STRING,
             allowNull: false,
         },
-        email: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            unique: true,
-            validate: {
-                isEmail: true,
-            },
-        },
         password: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -35,27 +27,25 @@ user.init(// initialize the User model by calling the init() method on the User 
                 len: [6],
             },
         },
-        postId: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'post',
-                key: 'id',
-            },
-        },
     },
     {
         hooks: {// define the hooks object to run the beforeCreate() method before a new user is created
-            async beforeCreate(newUserData) {// beforeCreate() is a sequelize hook that is used to hash the password before it is created
+            beforeCreate: async (newUserData) => {// beforeCreate() is a sequelize hook that is used to hash the password before it is created
                 newUserData.password = await bcrypt.hash(newUserData.password, 10);// hash() is used to hash the password, the first argument is the password to be hashed, the second argument is the number of times the password is hashed
                 return newUserData;// return the newUserData object
+            },
+            beforeUpdate: async (updatedUserData) => {
+                updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
+                return updatedUserData;
+            }
+
         },
-    },
-    sequelize, // pass in the sequelize connection
-    timestamps: false, // disable the timestamps
-    freezeTableName: true, // disable the pluralization of the table name
-    underscored: true, // enable the use of underscores instead of camel-casing
-    modelName: 'user', // set the model name to user
- }
+        sequelize, // pass in the sequelize connection
+        timestamps: false, // disable the timestamps
+        freezeTableName: true, // disable the pluralization of the table name
+        underscored: true, // enable the use of underscores instead of camel-casing
+        modelName: 'user', // set the model name to user
+    }
 );
 
 module.exports = user;// export the User model to be used in other parts of the application

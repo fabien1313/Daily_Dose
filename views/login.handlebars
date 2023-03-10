@@ -6,10 +6,13 @@
 
     <div id="login-div">
         <form action="/login" method="POST">
-            <label for="email">Email:</label>
-            <input type="email" name="email" id="email" placeholder="Email" required>
+
+            <label for="username">Username:</label>
+            <input type="username" name="username" id="username" placeholder="Username" required>
+
             <label for="password">Password:</label>
             <input type="password" name="password" id="password" placeholder="Password" required>
+            
             <button id="login-btn" type="submit">Login</button>
         </form>
     </div>
@@ -17,5 +20,6 @@
     <div>
     <a href="/signup">Don't have an account? Sign up here!</a>
     </div>
-
 </div>
+
+<script src="../js/login.js"></script>
