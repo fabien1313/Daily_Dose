@@ -1,15 +1,19 @@
 const router = require('express').Router();// Import the express package and use the Router() method to create a new router object
 const { post, comment, user } = require('../models/');
 
+
 // GET HOMEPAGE
 router.get ('/', async (req, res) => {
     try {
-        const dbPostData = await Post.findAll({ //Find all posts
+        const dbPostData = await post.findAll({ //Find all posts
 			include: [user], // Posts found are from the user table
 		});
 
         const posts = dbPostData.map((post) => post.get({ plain: true }));
-		res.render('myposts', {posts});  // Render the myposts handlebar and pass in the posts object on the homepage.
+		res.render('myposts', {
+			layout: 'main',
+			posts,
+		});  // Render the myposts handlebar and pass in the posts object on the homepage.
 
     } catch (e) {
         console.log(e); // If there is an error, log it to the console

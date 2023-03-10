@@ -37,7 +37,7 @@ router.post('/login', async (req, res) => {// This is the POST route for localho
 		}
 		const validPassword = await dbUserData.checkPassword(req.body.password);// This checks the password from the request body against the password in the database
 		if (!validPassword) {// If the password is incorrect
-			res.status(400).json({ message: 'Incorrect  or password. Please try again!' });
+			res.status(400).json({ message: 'Incorrect username or password. Please try again!' });
 			return;
 		}
 		req.session.save(() => {// This saves the session

@@ -1,5 +1,6 @@
 <main>
     {{#each posts}}
+    <a href="/dash/edit/{{id}}">
     <div class="post">
         <div class="post-title">
             <h2>{{title}}</h2>
@@ -8,11 +9,6 @@
             <p class="content">{{content}}</p>
         </div>
     </div>
+    </a>
     {{/each}}
-
-    <div id="create-btn-div">
-        <a href=""><button id="create-btn">Create Blog Post</button></a>
-    </div>
-
-    <h2>You have visited this site {{countVisit}} times</h2>
 </main>
